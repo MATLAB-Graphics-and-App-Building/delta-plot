@@ -6,6 +6,8 @@ Version: 1.0
 deltaplot creates multiple line segments, each showing the difference between
 pairs of values. 
 
+![Example deltaplot](/deltaplot.png)
+
 How to use:
 ```
 deltaplot(X1, X2)
