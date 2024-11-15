@@ -296,8 +296,15 @@ classdef deltaplot < matlab.graphics.chartcontainer.ChartContainer & ...
             % Create the axes
             ax = getAxes(obj);
             box(ax,'on');
+
+            % Turn legend on and place it outside to the right
+            obj.LegendVisible = 'on';
+            ax.Legend.Layout.Tile = 'east';
+
+            % Create patch and indicate it should not appear in legend
             obj.PatchHandle = patch(ax, 'XData',NaN,'YData',NaN, 'FaceVertexCData',NaN,...
                 'EdgeColor','interp','MarkerFaceColor','flat');
+            obj.PatchHandle.Annotation.LegendInformation.IconDisplayStyle='off';
             
             % trigger colororder setter to compute colormap
             colors = get(groot,'DefaultAxesColorOrder');
@@ -310,8 +317,8 @@ classdef deltaplot < matlab.graphics.chartcontainer.ChartContainer & ...
             hold(ax,'on')
             obj.Stem1 = stem(ax,NaN, NaN, "filled");
             obj.Stem2 = stem(ax,NaN, NaN, "filled");
-            l=legend(ax,[obj.Stem1 obj.Stem2]);
-            l.Layout.Tile = 'east';
+            
+            ax.Legend.Layout.Tile = 'east';
             
             % Call the load method in case of loading from a fig file
             loadstate(obj);
